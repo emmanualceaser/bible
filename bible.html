@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    
+</head>
+<body>
+    <h1>Bible</h1>
+    <div id="json-container"></div>
+    
+</body>
+<script>
+    fetch('john.json')
+  .then(response => response.json())
+  .then(data => {
+    document.getElementById("json-container").innerHTML = `<div> </div>`;
+    console.log(data);
+    displayWords(data);
+  })
+  .catch(error => console.error('Error loading JSON:', error));
+
+
+// Function to display words from "john"
+function displayWords(data) {
+  let number= 0
+    const outputDiv = document.getElementById("json-container");
+    data.books.forEach(book => {
+        if (book.name.toLowerCase() === "john") {
+            book.chapters.forEach(chapter => {
+             
+                chapter.wordses.forEach((wordses,index) => {
+                    const paragraph = document.createElement("p");
+                    const heading = document.createElement("h1");
+                    let finalText;
+                    if (wordses.type=="text") {
+                      number=number+1
+                      paragraph.textContent = number+" " +wordses.words;
+                      finalText=paragraph
+                    }else{
+                      heading.textContent = wordses.words;
+                      finalText=heading
+                    }
+                    
+                    
+                    outputDiv.appendChild(finalText);
+                });
+            });
+        }
+    });
+}
+
+// Call the function to display words
+
+</script>
+
+</html>
