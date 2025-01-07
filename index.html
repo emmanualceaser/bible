@@ -7,7 +7,7 @@
     
 </head>
 <body>
-    <h1>Bible</h1>
+   
     <div id="json-container"></div>
     
 </body>
@@ -34,14 +34,21 @@ function displayWords(data) {
                     const paragraph = document.createElement("p");
                     const heading = document.createElement("h1");
                     let finalText;
-                    if (wordses.type=="text") {
-                      number=number+1
-                      paragraph.textContent = number+" " +wordses.words;
-                      finalText=paragraph
-                    }else{
-                      heading.textContent = wordses.words;
-                      finalText=heading
-                    }
+                    chapter.heading.forEach((head,headindex) => {
+                      
+                          
+                         
+                       if(index==head.location){
+
+                          heading.textContent = head.words;
+                         
+                          outputDiv.appendChild(heading);
+                        }
+                        const number = index+1
+                          paragraph.textContent =number +" " +wordses.words;
+                          finalText=paragraph
+                        
+                      });
                     
                     
                     outputDiv.appendChild(finalText);
